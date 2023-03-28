@@ -92,6 +92,27 @@ class _MyAppState extends State<MyApp> {
               ),
             ],
           ),
+          bottomSheet: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.add),
+              ),
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.remove),
+              ),
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.favorite),
+              ),
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.share),
+              ),
+            ],
+          ),
         ),
       ),
     );
