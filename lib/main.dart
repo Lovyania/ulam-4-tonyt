@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
           body: Column(
             children: [
               Container(
-                height: 50,
+                height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -48,11 +48,11 @@ class _MyAppState extends State<MyApp> {
                       onPressed: () {},
                       child: Image.network(
                         'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 24.0,
+                        height: 64.0,
                       ),
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(24.0),
                         primary: Colors.white,
                         onPrimary: Colors.black,
                       ),
@@ -61,11 +61,11 @@ class _MyAppState extends State<MyApp> {
                       onPressed: () {},
                       child: Image.network(
                         'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 24.0,
+                        height: 64.0,
                       ),
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(24.0),
                         primary: Colors.white,
                         onPrimary: Colors.black,
                       ),
@@ -74,11 +74,11 @@ class _MyAppState extends State<MyApp> {
                       onPressed: () {},
                       child: Image.network(
                         'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 24.0,
+                        height: 64.0,
                       ),
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(24.0),
                         primary: Colors.white,
                         onPrimary: Colors.black,
                       ),
@@ -87,11 +87,11 @@ class _MyAppState extends State<MyApp> {
                       onPressed: () {},
                       child: Image.network(
                         'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 24.0,
+                        height: 64.0,
                       ),
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(24.0),
                         primary: Colors.white,
                         onPrimary: Colors.black,
                       ),
