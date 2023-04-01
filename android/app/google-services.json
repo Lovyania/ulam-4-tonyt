@@ -29,13 +29,6 @@
             {
               "client_id": "202171125123-3pleumklfsd03e5is6ma5o7e1nus8vg1.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "202171125123-3djid9hjmh7nd9hn8neqap2k7vvgn6lo.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.ulam4Tonyt"
-              }
             }
           ]
         }
