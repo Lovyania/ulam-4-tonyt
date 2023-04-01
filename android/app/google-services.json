@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202171125123",
+    "project_id": "ulam4tonyt",
+    "storage_bucket": "ulam4tonyt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202171125123:android:f668d597e977ef5b28bab6",
+        "android_client_info": {
+          "package_name": "com.example.ulam_4_tonyt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202171125123-3pleumklfsd03e5is6ma5o7e1nus8vg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEkIgMWnWpn0MUF2kVNDr_qn2EQUFQuU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202171125123-3pleumklfsd03e5is6ma5o7e1nus8vg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
