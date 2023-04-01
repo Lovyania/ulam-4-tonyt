@@ -9,6 +9,23 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+class RecipeSearchBar extends StatefulWidget {
+  @override
+  _RecipeSearchBarState createState() => _RecipeSearchBarState();
+}
+
+class _RecipeSearchBarState extends State<RecipeSearchBar> {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Search Recipes',
+        prefixIcon: Icon(Icons.search),
+      ),
+    );
+  }
+}
+
 class _MyAppState extends State<MyApp> {
   List<dynamic> recipeData = [];
 
@@ -39,6 +56,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
+              RecipeSearchBar(),
               Row(
                 children: [
                   Text(
