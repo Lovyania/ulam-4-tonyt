@@ -39,6 +39,17 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
+              Row(
+                children: [
+                  Text(
+                    'Categories',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
               Container(
                 height: 80,
                 child: Row(
