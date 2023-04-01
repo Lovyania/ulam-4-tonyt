@@ -51,61 +51,85 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
               Container(
-                height: 80,
+                height: 120,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Image.network(
-                        'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 64.0,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(24.0),
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Image.network(
+                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
+                            height: 64.0,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(24.0),
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text('Breakfast'),
+                      ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Image.network(
-                        'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 64.0,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(24.0),
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Image.network(
+                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
+                            height: 64.0,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(24.0),
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text('Lunch'),
+                      ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Image.network(
-                        'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 64.0,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(24.0),
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Image.network(
+                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
+                            height: 64.0,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(24.0),
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text('Dinner'),
+                      ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Image.network(
-                        'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                        height: 64.0,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(24.0),
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Image.network(
+                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
+                            height: 64.0,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(24.0),
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text('Appetizer'),
+                      ],
                     ),
                   ],
                 ),
