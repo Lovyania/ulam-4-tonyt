@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:ulam_4_tonyt/screens/login.dart';
+import 'package:ulam_4_tonyt/screens/spinwheelscreen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
