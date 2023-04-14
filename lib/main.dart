@@ -6,18 +6,16 @@ import 'dart:convert';
 import 'package:ulam_4_tonyt/screens/login.dart';
 import 'package:ulam_4_tonyt/screens/spinwheelscreen.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: FirebaseOptions(
-    apiKey: "AIzaSyBbMp8CIK3b752_Gv9_PQtLp9TM0n-5LbU",
-    appId: "1:202171125123:web:eda8295f04c38ae128bab6",
-    messagingSenderId: "202171125123",
-    projectId: "ulam4tonyt"
-  ));
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: "AIzaSyBbMp8CIK3b752_Gv9_PQtLp9TM0n-5LbU",
+          appId: "1:202171125123:web:eda8295f04c38ae128bab6",
+          messagingSenderId: "202171125123",
+          projectId: "ulam4tonyt"));
   runApp(MyApp());
 }
-
 
 class MyApp extends StatefulWidget {
   @override
@@ -110,13 +108,16 @@ class NavigationDrawer extends StatelessWidget {
               title: const Text('Log In'),
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => Login(),
-                  )),
+                builder: (context) => Login(),
+              )),
             ),
             ListTile(
               leading: const Icon(Icons.workspaces_outline),
               title: const Text('Food Roulette'),
-              onTap: () {},
+               onTap: () =>
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => SpinWheel(),
+              )),
             ),
             ListTile(
               leading: const Icon(Icons.update),
