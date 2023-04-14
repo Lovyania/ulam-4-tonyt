@@ -91,13 +91,13 @@ class NavigationDrawer extends StatelessWidget {
               )),
             ),
             ListTile(
-              leading: const Icon(Icons.login_outlined),
-              title: const Text('Log In'),
+              leading: const Icon(Icons.favorite_border),
+              title: const Text('Favorites'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.workspaces_outline),
-              title: const Text('Food Roulette'),
+              title: const Text('Workflow'),
               onTap: () {},
             ),
             ListTile(
@@ -153,7 +153,6 @@ class _MyAppState extends State<MyApp> {
           body: Column(
             children: [
               RecipeSearchBar(),
-              SizedBox(height: 16),
               Row(
                 children: [
                   Text(
@@ -165,7 +164,6 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
               Container(
                 height: 120,
                 child: Row(
@@ -177,7 +175,7 @@ class _MyAppState extends State<MyApp> {
                           onPressed: () {},
                           child: Image.network(
                             'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                            height: 64.0,
                           ),
                           style: ElevatedButton.styleFrom(
                             shape: CircleBorder(),
@@ -196,7 +194,7 @@ class _MyAppState extends State<MyApp> {
                           onPressed: () {},
                           child: Image.network(
                             'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                            height: 64.0,
                           ),
                           style: ElevatedButton.styleFrom(
                             shape: CircleBorder(),
@@ -215,7 +213,7 @@ class _MyAppState extends State<MyApp> {
                           onPressed: () {},
                           child: Image.network(
                             'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                            height: 64.0,
                           ),
                           style: ElevatedButton.styleFrom(
                             shape: CircleBorder(),
@@ -234,7 +232,7 @@ class _MyAppState extends State<MyApp> {
                           onPressed: () {},
                           child: Image.network(
                             'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                            height: 64.0,
                           ),
                           style: ElevatedButton.styleFrom(
                             shape: CircleBorder(),
@@ -249,18 +247,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Text(
-                    'Recommendations',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
               ),
               SizedBox(height: 16),
               Expanded(
