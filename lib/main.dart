@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:ulam_4_tonyt/screens/login.dart';
+
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatefulWidget {
   @override
@@ -93,7 +96,10 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.login_outlined),
               title: const Text('Log In'),
-              onTap: () {},
+              onTap: () =>
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => Login(),
+                  )),
             ),
             ListTile(
               leading: const Icon(Icons.workspaces_outline),
