@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulam_4_tonyt/reusable_widgets/reusable_widgets.dart';
-import 'package:ulam_4_tonyt/main.dart';
+import 'package:ulam_4_tonyt/screens/home.dart';
 import 'package:ulam_4_tonyt/screens/login.dart';
 import 'package:ulam_4_tonyt/utils/color_utils.dart';
 

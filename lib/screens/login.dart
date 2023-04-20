@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ulam_4_tonyt/main.dart';
+import 'package:ulam_4_tonyt/screens/home.dart';
 import 'package:ulam_4_tonyt/screens/signup.dart';
 import 'package:ulam_4_tonyt/utils/color_utils.dart';
 import '../reusable_widgets/reusable_widgets.dart';
