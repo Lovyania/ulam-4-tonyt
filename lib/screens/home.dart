@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import 'package:ulam_4_tonyt/screens/login.dart';
 import 'package:ulam_4_tonyt/screens/spinwheelscreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -103,7 +104,7 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.workspaces_outline),
               title: const Text('Food Roulette'),
-               onTap: () =>
+              onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => SpinWheel(),
               )),
@@ -152,10 +153,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Colors.green
+      ),
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
-            title: Text('Recipe App'),
+            title: Text('Ulam 4 Tonyt'),
           ),
           drawer: const NavigationDrawer(),
           body: Column(
@@ -176,86 +180,102 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 16),
               Container(
                 height: 120,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Image.network(
-                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(24.0),
-                            primary: Colors.white,
-                            onPrimary: Colors.black,
+                          SizedBox(height: 8),
+                          Text('Breakfast'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text('Breakfast'),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Image.network(
-                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                          SizedBox(height: 8),
+                          Text('Lunch'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(24.0),
-                            primary: Colors.white,
-                            onPrimary: Colors.black,
+                          SizedBox(height: 8),
+                          Text('Dinner'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.loveandlemons.com/appetizers/')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text('Lunch'),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Image.network(
-                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
+                          SizedBox(height: 8),
+                          Text('Appetizer'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(24.0),
-                            primary: Colors.white,
-                            onPrimary: Colors.black,
+                          SizedBox(height: 8),
+                          Text('Snack'),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/77/drinks/')),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
+                              ),
+                              radius: 42,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text('Dinner'),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Image.network(
-                            'https://cf.shopee.ph/file/712f1fcc094e5d3fd3a2407e07077539',
-                            height: 42.0,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(24.0),
-                            primary: Colors.white,
-                            onPrimary: Colors.black,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text('Appetizer'),
-                      ],
-                    ),
-                  ],
+                          SizedBox(height: 8),
+                          Text('Drinks'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 16),
@@ -285,24 +305,34 @@ class _MyAppState extends State<MyApp> {
                               EdgeInsets.all(8.0), // Add padding between cards
                           children: List.generate(recipeData.length, (index) {
                             final recipeImageURL = recipeData[index]['image'];
-                            return Card(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.network(
-                                    'https://pbs.twimg.com/media/FXnfSbfXgAIBK6Z.png',
-                                    height: 100.0,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      recipeData[index]['label'],
-                                      style: TextStyle(fontSize: 16),
+                            return GestureDetector(
+                              onTap: () async {
+                                final recipeURL = recipeData[index]['url'];
+                                if (await canLaunch(recipeURL)) {
+                                  await launch(recipeURL);
+                                } else {
+                                  throw 'Could not launch $recipeURL';
+                                }
+                              },
+                              child: Card(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(
+                                      recipeImageURL,
+                                      height: 100.0,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        recipeData[index]['label'],
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           }),
@@ -316,7 +346,7 @@ class _MyAppState extends State<MyApp> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.green,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.search),

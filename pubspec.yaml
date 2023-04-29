@@ -15,6 +15,7 @@ dependencies:
   flutter_fortune_wheel: ^1.2.0
   rxdart: ^0.27.3
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
@@ -24,5 +25,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/LOGO.png
+  assets:
+    - assets/LOGO.png
+    - assets/breakfast.png
+    - assets/breakfast_edited.png
