@@ -301,7 +301,7 @@ class _MyAppState extends State<MyApp> {
                     : LayoutBuilder(
                         builder: (context, constraints) => GridView.count(
                           crossAxisCount: constraints.maxWidth > 600
-                              ? 20
+                              ? 4
                               : 2, // Change the number of columns based on screen width
                           childAspectRatio:
                               0.75, // Adjust the aspect ratio of the cards
