@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 class RecipeSearchPage extends StatefulWidget {
@@ -91,25 +93,31 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
               },
             ),
             Expanded(
-              child: GridView.builder(
-                controller: _scrollController,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 16.0,
-                  mainAxisSpacing: 16.0,
+              child: ConditionalBuilder(
+                condition: _searchResults.isNotEmpty,
+                builder: (context) => GridView.builder(
+                  controller: _scrollController,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                    childAspectRatio: 0.8,
+                  ),
+                  itemCount: _searchResults.length +
+                      (_searchResults.length < _totalResults ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == _searchResults.length) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    final recipe = _searchResults[index]['recipe'];
+                    return RecipeCard(recipe: recipe);
+                  },
                 ),
-                itemCount: _searchResults.length +
-                    (_searchResults.length < _totalResults ? 1 : 0),
-                itemBuilder: (context, index) {
-                  if (index == _searchResults.length) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  final recipe = _searchResults[index]['recipe'];
-                  return RecipeCard(recipe: recipe);
-                },
+                fallback: (context) => Center(
+                  child: Text('No results'),
+                ),
               ),
             ),
           ],
@@ -120,60 +128,67 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
 }
 
 class RecipeCard extends StatelessWidget {
-  const RecipeCard({Key? key, required this.recipe}) : super(key: key);
+  final Map<String, dynamic> recipe;
 
-  final dynamic recipe;
+  RecipeCard({required this.recipe});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2.0,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 120.0,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(recipe['image']),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(height: 8.0),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(
-              recipe['label'],
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-          ),
-          SizedBox(height: 8.0),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.restaurant),
-                SizedBox(width: 4.0),
-                Text(
-                  recipe['source'],
-                  style: TextStyle(fontSize: 12.0),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () async {
+        if (await canLaunchUrl(recipe['url'])) {
+          await launchUrl(recipe['url']);
+        }
+      },
+      child: Card(
+        elevation: 2.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 120.0,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(recipe['image']),
+                  fit: BoxFit.cover,
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 8.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                recipe['label'],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+            ),
+            SizedBox(height: 8.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.restaurant),
+                  SizedBox(width: 4.0),
+                  Text(
+                    recipe['source'],
+                    style: TextStyle(fontSize: 12.0),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
