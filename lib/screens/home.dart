@@ -135,7 +135,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> fetchRecipes() async {
     final response = await http.get(Uri.parse(
-        'https://api.edamam.com/search?q=chicken&app_id=cd4b33ae&app_key=8583514940e95377b00342510d52d724'));
+        'https://api.edamam.com/search?q=chicken&app_id=c6b66230&app_key=9ab562577b709b59d7518e6ca96cc2f5'));
     final data = json.decode(response.body);
     setState(() {
       recipeData =
@@ -153,9 +153,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primarySwatch: Colors.green
-      ),
+      theme: ThemeData(primarySwatch: Colors.green),
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
@@ -187,7 +185,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
@@ -202,7 +201,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
@@ -217,7 +217,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
@@ -232,7 +233,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.loveandlemons.com/appetizers/')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.loveandlemons.com/appetizers/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
@@ -247,7 +249,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
@@ -262,7 +265,8 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/77/drinks/')),
+                            onTap: () => launchUrl(Uri.parse(
+                                'https://www.allrecipes.com/recipes/77/drinks/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
