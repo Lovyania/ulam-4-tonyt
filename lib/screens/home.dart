@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -19,7 +20,7 @@ class RecipeSearchBar extends StatefulWidget {
 class _RecipeSearchBarState extends State<RecipeSearchBar> {
   @override
   Widget build(BuildContext context) {
-    return const TextField(
+    return TextField(
       decoration: InputDecoration(
         hintText: 'Search Recipes',
         prefixIcon: Icon(Icons.search),
@@ -131,7 +132,6 @@ class NavigationDrawer extends StatelessWidget {
 
 class _MyAppState extends State<MyApp> {
   List<dynamic> recipeData = [];
-  int _recipeCount = 20;
 
   Future<void> fetchRecipes() async {
     final response = await http.get(Uri.parse(
@@ -153,7 +153,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(
+          primarySwatch: Colors.green
+      ),
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
@@ -185,8 +187,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
+                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
@@ -201,8 +202,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
+                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
@@ -217,8 +217,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
+                            onTap: () => launchUrl(Uri.parse('https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
@@ -233,8 +232,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.loveandlemons.com/appetizers/')),
+                            onTap: () => launchUrl(Uri.parse('https://www.loveandlemons.com/appetizers/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
@@ -249,8 +247,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
+                            onTap: () => launchUrl(Uri.parse('https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
@@ -265,8 +262,7 @@ class _MyAppState extends State<MyApp> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => launchUrl(Uri.parse(
-                                'https://www.allrecipes.com/recipes/77/drinks/')),
+                            onTap: () => launchUrl(Uri.parse('https://www.allrecipes.com/recipes/77/drinks/')),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                 'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
@@ -282,7 +278,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Row(
                 children: [
                   Text(
@@ -294,26 +290,26 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Expanded(
                 child: recipeData.isEmpty
                     ? Center(child: CircularProgressIndicator())
                     : LayoutBuilder(
                         builder: (context, constraints) => GridView.count(
                           crossAxisCount: constraints.maxWidth > 600
-                              ? 20
+                              ? 4
                               : 2, // Change the number of columns based on screen width
                           childAspectRatio:
                               0.75, // Adjust the aspect ratio of the cards
-                          padding: const EdgeInsets.all(
-                              8.0), // Add padding between cards
+                          padding:
+                              EdgeInsets.all(8.0), // Add padding between cards
                           children: List.generate(recipeData.length, (index) {
                             final recipeImageURL = recipeData[index]['image'];
                             return GestureDetector(
                               onTap: () async {
                                 final recipeURL = recipeData[index]['url'];
-                                if (await canLaunchUrl(recipeURL)) {
-                                  await launchUrl(recipeURL);
+                                if (await canLaunch(recipeURL)) {
+                                  await launch(recipeURL);
                                 } else {
                                   throw 'Could not launch $recipeURL';
                                 }
