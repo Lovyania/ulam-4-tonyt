@@ -31,6 +31,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   }
 
   Future<void> _searchRecipes() async {
+    setState(() {
+      _searchResults = [];
+    });
+
     final appId = 'cd4b33ae';
     final appKey = '8583514940e95377b00342510d52d724';
     final url =
