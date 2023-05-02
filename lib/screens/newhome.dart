@@ -140,8 +140,8 @@ class RecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        if (await canLaunchUrl(recipe['url'])) {
-          await launchUrl(recipe['url']);
+        if (await canLaunch(recipe['url'])) {
+          await launch(recipe['url']);
         }
       },
       child: Card(
