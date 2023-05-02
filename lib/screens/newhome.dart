@@ -35,8 +35,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
       _searchResults = [];
     });
 
-    final appId = 'cd4b33ae';
-    final appKey = '8583514940e95377b00342510d52d724';
+    final appId = 'c6b66230';
+    final appKey = '9ab562577b709b59d7518e6ca96cc2f5';
     final url =
         'https://api.edamam.com/search?q=$_searchQuery&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
 
