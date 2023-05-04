@@ -27,16 +27,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   void _updateSearchQuery(String newQuery) {
     setState(() {
       _searchQuery = newQuery;
+      _searchResults.clear();
     });
   }
 
   Future<void> _searchRecipes() async {
-    setState(() {
-      _searchResults = [];
-    });
-
-    final appId = 'c6b66230';
-    final appKey = '9ab562577b709b59d7518e6ca96cc2f5';
+    const appId = 'c6b66230';
+    const appKey = '9ab562577b709b59d7518e6ca96cc2f5';
     final url =
         'https://api.edamam.com/search?q=$_searchQuery&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
 
@@ -48,6 +45,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
       setState(() {
         _searchResults.addAll(data);
         _totalResults = total;
+        _currentPage += _perPage;
       });
     } else {
       print('Request failed with status: ${response.statusCode}.');
@@ -91,9 +89,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 ),
               ),
               onChanged: (value) {
+                _updateSearchQuery(value);
+              },
+              onSubmitted: (value) {
                 setState(() {
                   _searchQuery = value;
                 });
+                _searchRecipes();
               },
             ),
             Expanded(
