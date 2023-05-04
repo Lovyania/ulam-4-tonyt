@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulam_4_tonyt/screens/newhome.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +11,8 @@ void main() async {
           appId: "c6b66230",
           messagingSenderId: "202171125123",
           projectId: "ulam4tonyt"));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(MyApp());
 }
 
