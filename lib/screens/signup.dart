@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ulam_4_tonyt/reusable_widgets/reusable_widgets.dart';
 import 'package:ulam_4_tonyt/screens/home.dart';
 import 'package:ulam_4_tonyt/screens/login.dart';
+import 'package:ulam_4_tonyt/screens/newhome.dart';
 import 'package:ulam_4_tonyt/utils/color_utils.dart';
 
 class signup extends StatefulWidget {
@@ -62,7 +63,7 @@ class _signupState extends State<signup> {
                                 .then((value){
                               print("Account is Registered and Created");
                               Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => MyApp()));
+                                  MaterialPageRoute(builder: (context) => RecipeSearchPage()));
                             }).onError((error, stackTrace) {
                               print("Error ${error.toString()}");
                             });

@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                               email: _emailTextController.text,
                               password: _passwordTextController.text).then((value){
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => MyApp()));
+                                MaterialPageRoute(builder: (context) => RecipeSearchPage()));
                           });
                         }),
                         signupOption()

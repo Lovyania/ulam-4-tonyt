@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ulam_4_tonyt/screens/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,11 +30,10 @@ class NavigationDrawer extends StatelessWidget {
       color: Colors.blue.shade700,
       child: InkWell(
         onTap: () {
-          // User can click to navigate to user profile page
-          // Navigator.pop(context);
-          // Navigator.of(context).push(MaterialPageRoute(
-          //   builder: (context) => UserPage(),
-          // ));
+          Navigator.pop(context);
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => Profile(),
+          ));
         },
         child: Container(
           padding: EdgeInsets.only(
@@ -40,7 +41,7 @@ class NavigationDrawer extends StatelessWidget {
             bottom: 24,
           ),
           child: Column(
-            children: const [
+            children: [
               CircleAvatar(
                 radius: 52,
                 backgroundImage: NetworkImage(
@@ -52,7 +53,7 @@ class NavigationDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 28, color: Colors.white),
               ),
               Text(
-                'example@email.com',
+                FirebaseAuth.instance.currentUser!.email!,
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ],
