@@ -121,7 +121,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   List<dynamic> _searchResults = [];
   int _totalResults = 0;
   int _currentPage = 0;
-  int _perPage = 10;
+  final int _perPage = 10;
 
   @override
   void dispose() {
@@ -183,27 +183,39 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search recipes',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
                 ),
-                suffixIcon: IconButton(
-                  onPressed: _searchRecipes,
-                  icon: Icon(Icons.search),
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Search recipes',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: _searchRecipes,
+                        icon: const Icon(Icons.search),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      _updateSearchQuery(value);
+                    },
+                    onSubmitted: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                      _searchRecipes();
+                    },
+                  ),
                 ),
-              ),
-              onChanged: (value) {
-                _updateSearchQuery(value);
-              },
-              onSubmitted: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-                _searchRecipes();
-              },
+              ],
             ),
             Row(
               children: [
@@ -228,7 +240,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
                             ),
@@ -244,7 +256,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
                             ),
@@ -260,7 +272,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
                             ),
@@ -276,7 +288,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.loveandlemons.com/appetizers/')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
                             ),
@@ -292,7 +304,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
                             ),
@@ -308,7 +320,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         GestureDetector(
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.allrecipes.com/recipes/77/drinks/')),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
                             ),
@@ -328,7 +340,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 condition: _searchResults.isNotEmpty,
                 builder: (context) => GridView.builder(
                   controller: _scrollController,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
@@ -338,7 +350,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                       (_searchResults.length < _totalResults ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (index == _searchResults.length) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -346,8 +358,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                     return RecipeCard(recipe: recipe);
                   },
                 ),
-                fallback: (context) => Center(
-                  child: Text('No results'),
+                fallback: (context) => const Center(
+                  child: Text('Search for a recipe!'),
                 ),
               ),
             ),
