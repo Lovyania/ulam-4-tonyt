@@ -12,7 +12,7 @@ void main() async {
           messagingSenderId: "202171125123",
           projectId: "ulam4tonyt"));
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   runApp(MyApp());
 }
 
