@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulam_4_tonyt/screens/home.dart';
+import 'package:ulam_4_tonyt/screens/newhome.dart';
 import 'package:ulam_4_tonyt/screens/signup.dart';
 import 'package:ulam_4_tonyt/utils/color_utils.dart';
 import '../reusable_widgets/reusable_widgets.dart';
@@ -18,6 +19,13 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => RecipeSearchPage())),
+        ),
+      ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

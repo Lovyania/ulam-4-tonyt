@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
 
+import 'newhome.dart';
+
 class SpinWheel extends StatefulWidget {
   const SpinWheel({Key? key}) : super(key: key);
 
@@ -109,6 +111,13 @@ class _SpinWheelState extends State<SpinWheel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => RecipeSearchPage())),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
