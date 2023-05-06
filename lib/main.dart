@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
       title: 'Edamam Recipe Search',
       home: RecipeSearchPage(),
     );

@@ -27,7 +27,7 @@ class NavigationDrawer extends StatelessWidget {
       );
 
   Widget buildHeader(BuildContext context) => Material(
-      color: Colors.blue.shade700,
+      color: Colors.green,
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -89,22 +89,6 @@ class NavigationDrawer extends StatelessWidget {
                 builder: (context) => SpinWheel(),
               )),
             ),
-            ListTile(
-              leading: const Icon(Icons.update),
-              title: const Text('Updates'),
-              onTap: () {},
-            ),
-            const Divider(color: Colors.black),
-            ListTile(
-              leading: const Icon(Icons.account_tree_outlined),
-              title: const Text('Plugins'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications_outlined),
-              title: const Text('Notifications'),
-              onTap: () {},
-            ),
           ],
         ),
       );
@@ -116,6 +100,7 @@ class RecipeSearchPage extends StatefulWidget {
 }
 
 class _RecipeSearchPageState extends State<RecipeSearchPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController _scrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
@@ -179,6 +164,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // Add a key to the Scaffold widget
       drawer: const NavigationDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -189,7 +175,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 IconButton(
                   icon: const Icon(Icons.menu),
                   onPressed: () {
-                    Scaffold.of(context).openDrawer();
+                    _scaffoldKey.currentState!.openDrawer(); // Use the GlobalKey to get a reference to the ScaffoldState
                   },
                 ),
                 Expanded(
@@ -231,7 +217,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
             ),
             SizedBox(height: 16),
             Container(
-              height: 120,
+              height: 130,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -245,11 +231,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Breakfast'),
+                        Text('Breakfast', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                     Column(
@@ -261,11 +247,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Lunch'),
+                        Text('Lunch', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                     Column(
@@ -277,11 +263,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Dinner'),
+                        Text('Dinner', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                     Column(
@@ -293,11 +279,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Appetizer'),
+                        Text('Appetizer', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                     Column(
@@ -309,11 +295,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Snack'),
+                        Text('Snack', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                     Column(
@@ -325,11 +311,11 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             backgroundImage: NetworkImage(
                               'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
                             ),
-                            radius: 42,
+                            radius: 46,
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Drinks'),
+                        Text('Drinks', style: TextStyle(fontSize: 15),),
                       ],
                     ),
                   ],
@@ -384,56 +370,59 @@ class RecipeCard extends StatelessWidget {
           await launch(recipe['url']);
         }
       },
-      child: Card(
-        elevation: 2.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              height: 120.0,
-              width: double.infinity,
-              child: CachedNetworkImage(
-                imageUrl: recipe['image'],
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(),
-                ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
-            ),
-            SizedBox(height: 8.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                recipe['label'],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-            ),
-            SizedBox(height: 8.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.restaurant),
-                  SizedBox(width: 4.0),
-                  Text(
-                    recipe['source'],
-                    style: TextStyle(fontSize: 12.0),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Card(
+          elevation: 2.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 120.0,
+                width: double.infinity,
+                child: CachedNetworkImage(
+                  imageUrl: recipe['image'],
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(),
                   ),
-                ],
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: 8.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  recipe['label'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.restaurant),
+                    SizedBox(width: 4.0),
+                    Text(
+                      recipe['source'],
+                      style: TextStyle(fontSize: 12.0),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
