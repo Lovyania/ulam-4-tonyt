@@ -45,7 +45,7 @@ class NavigationDrawer extends StatelessWidget {
               CircleAvatar(
                 radius: 52,
                 backgroundImage: NetworkImage(
-                    'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/60320/angry-emoji-clipart-xl.png'),
+                    'https://www.citypng.com/public/uploads/preview/white-user-member-guest-icon-png-image-31634946729lnhivlto5f.png'),
               ),
               SizedBox(height: 12),
               Text(
@@ -222,6 +222,26 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
+                    // Column(
+                    //   children: [
+                    //     GestureDetector(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(builder: (context) => Login()),
+                    //         );
+                    //       },
+                    //       child: CircleAvatar(
+                    //         backgroundImage: NetworkImage(
+                    //           'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
+                    //         ),
+                    //         radius: 46,
+                    //       ),
+                    //     ),
+                    //     SizedBox(height: 8),
+                    //     Text('Breakfast', style: TextStyle(fontSize: 15),),
+                    //   ],
+                    // ),
                     Column(
                       children: [
                         GestureDetector(

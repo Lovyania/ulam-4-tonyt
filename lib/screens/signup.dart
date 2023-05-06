@@ -22,7 +22,7 @@ class _signupState extends State<signup> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.green,
           elevation: 0,
           title: const Text(
             "Sign Up",
@@ -33,15 +33,15 @@ class _signupState extends State<signup> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [hexStringColor("54B435"),
-                  hexStringColor("FFABAB"),
-                  hexStringColor("FFABAB")], begin: Alignment.topCenter, end: Alignment.bottomCenter )),
+                gradient: LinearGradient(colors: [hexStringColor("FFFFFF"),
+                  hexStringColor("FFFFFF"),
+                  hexStringColor("FFFFFF")], begin: Alignment.topCenter, end: Alignment.bottomCenter )),
             child: SingleChildScrollView(
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(20,MediaQuery.of(context).size.height * 0.2, 20, 0),
                     child: Column(
                         children: <Widget>[
-                          logoWidget("assets/LOGO.png"),
+                          logoWidget("assets/user.jpg"),
                           const SizedBox(
                             height: 20,
                           ),
