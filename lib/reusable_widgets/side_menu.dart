@@ -76,6 +76,14 @@ class DrawerMenu extends StatelessWidget {
                 builder: (context) => RecipeSearchPage(),
               )),
             ),
+            ListTile(
+              leading: const Icon(Icons.workspaces_outline),
+              title: const Text('Food Roulette'),
+              onTap: () =>
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const SpinWheel(),
+              )),
+            ),
             FirebaseAuth.instance.currentUser == null
                 ? ListTile(
                     leading: const Icon(Icons.login_outlined),
@@ -85,15 +93,16 @@ class DrawerMenu extends StatelessWidget {
                       builder: (context) => const LoginPage(),
                     )),
                   )
-                : Container(),
-            ListTile(
-              leading: const Icon(Icons.workspaces_outline),
-              title: const Text('Food Roulette'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const SpinWheel(),
-              )),
-            ),
+                : ListTile(
+                    leading: const Icon(Icons.logout_outlined),
+                    title: const Text('Log Out'),
+                    onTap: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => RecipeSearchPage(),
+                      ));
+                    },
+                  ),
           ],
         ),
       );
