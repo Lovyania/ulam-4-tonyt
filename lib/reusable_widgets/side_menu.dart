@@ -48,10 +48,11 @@ class DrawerMenu extends StatelessWidget {
                     'https://www.citypng.com/public/uploads/preview/white-user-member-guest-icon-png-image-31634946729lnhivlto5f.png'),
               ),
               SizedBox(height: 12),
-              Text(
-                'Guest',
-                style: TextStyle(fontSize: 28, color: Colors.white),
-              ),
+              FirebaseAuth.instance.currentUser == null
+                  ? Text('Guest')
+                  : Text(
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                      'Welcome!'),
               FirebaseAuth.instance.currentUser == null
                   ? Text('Sign Up to access other features!')
                   : Text(
@@ -75,14 +76,16 @@ class DrawerMenu extends StatelessWidget {
                 builder: (context) => RecipeSearchPage(),
               )),
             ),
-            ListTile(
-              leading: const Icon(Icons.login_outlined),
-              title: const Text('Log In'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const LoginPage(),
-              )),
-            ),
+            FirebaseAuth.instance.currentUser == null
+                ? ListTile(
+                    leading: const Icon(Icons.login_outlined),
+                    title: const Text('Log In'),
+                    onTap: () =>
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    )),
+                  )
+                : Container(),
             ListTile(
               leading: const Icon(Icons.workspaces_outline),
               title: const Text('Food Roulette'),
