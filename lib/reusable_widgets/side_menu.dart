@@ -48,12 +48,12 @@ class DrawerMenu extends StatelessWidget {
               ),
               SizedBox(height: 12),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Guest')
+                  ? Text('Guest', style: TextStyle(fontSize: 24, color: Colors.white))
                   : Text(
                       style: TextStyle(fontSize: 24, color: Colors.white),
                       'Welcome!'),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Sign Up to access other features!')
+                  ? Text('Sign Up to access other features!', style: TextStyle(fontSize: 16, color: Colors.white))
                   : Text(
                       FirebaseAuth.instance.currentUser!.email!,
                       style: TextStyle(fontSize: 16, color: Colors.white),

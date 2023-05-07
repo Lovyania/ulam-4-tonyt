@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 FirebaseAuth.instance.currentUser!.email!,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               SizedBox(height: 30),
               Expanded(
