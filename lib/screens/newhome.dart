@@ -163,9 +163,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
-                            ),
+                            backgroundImage: AssetImage('assets/breakfast.jpg'),
                             radius: 46,
                           ),
                         ),
@@ -182,9 +180,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://www.realsimple.com/thmb/rwSxx97nZcOoBb-dZ1ouGqSn-Q4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gut-healthy-lunch-GettyImages-1042075090-b21164b3fffe49af8868078e224a3e79.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/lunch.jpg'),
                             radius: 46,
                           ),
                         ),
@@ -201,9 +197,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://www.realsimple.com/thmb/fMh6cWLYxsddO3BuSJXanCk1gpI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/dinner.jpg'),
                             radius: 46,
                           ),
                         ),
@@ -220,9 +214,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.loveandlemons.com/appetizers/')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/egg-salad-appetizers-613108.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/appetizer.jpg'),
                             radius: 46,
                           ),
                         ),
@@ -239,9 +231,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Chex-Mix-Pile.jpg/640px-Chex-Mix-Pile.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/snack.jpg'),
                             radius: 46,
                           ),
                         ),
@@ -258,9 +248,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           onTap: () => launchUrl(Uri.parse(
                               'https://www.allrecipes.com/recipes/77/drinks/')),
                           child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/drinks.jpg'),
                             radius: 46,
                           ),
                         ),

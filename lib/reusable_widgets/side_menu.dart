@@ -44,8 +44,7 @@ class DrawerMenu extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 52,
-                backgroundImage: NetworkImage(
-                    'https://www.citypng.com/public/uploads/preview/white-user-member-guest-icon-png-image-31634946729lnhivlto5f.png'),
+                backgroundImage: AssetImage('assets/users.png'),
               ),
               SizedBox(height: 12),
               FirebaseAuth.instance.currentUser == null

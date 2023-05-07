@@ -31,3 +31,9 @@ flutter:
   assets:
     - assets/user.jpg
     - assets/users.png
+    - assets/breakfast.jpg
+    - assets/lunch.jpg
+    - assets/dinner.jpg
+    - assets/appetizer.jpg
+    - assets/snack.jpg
+    - assets/drinks.jpg
