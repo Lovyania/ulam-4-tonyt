@@ -97,7 +97,7 @@ class NavigationDrawer extends StatelessWidget {
               title: const Text('Log In'),
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => Login(),
+                builder: (context) => const LoginPage(),
               )),
             ),
             ListTile(

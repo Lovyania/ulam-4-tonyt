@@ -1,98 +1,12 @@
 import 'dart:convert';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ulam_4_tonyt/screens/profile.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:ulam_4_tonyt/screens/login.dart';
-import 'package:ulam_4_tonyt/screens/spinwheelscreen.dart';
-
-class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              buildHeader(context),
-              buildMenuItems(context),
-            ],
-          ),
-        ),
-      );
-
-  Widget buildHeader(BuildContext context) => Material(
-      color: Colors.green,
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Profile(),
-          ));
-        },
-        child: Container(
-          padding: EdgeInsets.only(
-            top: 24 + MediaQuery.of(context).padding.top,
-            bottom: 24,
-          ),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 52,
-                backgroundImage: NetworkImage(
-                    'https://www.citypng.com/public/uploads/preview/white-user-member-guest-icon-png-image-31634946729lnhivlto5f.png'),
-              ),
-              SizedBox(height: 12),
-              Text(
-                'Flutter App',
-                style: TextStyle(fontSize: 28, color: Colors.white),
-              ),
-              Text(
-                FirebaseAuth.instance.currentUser!.email!,
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-      ));
-  Widget buildMenuItems(BuildContext context) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Wrap(
-          runSpacing: 16,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title: const Text('Home'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => RecipeSearchPage(),
-              )),
-            ),
-            ListTile(
-              leading: const Icon(Icons.login_outlined),
-              title: const Text('Log In'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => Login(),
-              )),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces_outline),
-              title: const Text('Food Roulette'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => SpinWheel(),
-              )),
-            ),
-          ],
-        ),
-      );
-}
+import 'package:ulam_4_tonyt/reusable_widgets/side_menu.dart';
 
 class RecipeSearchPage extends StatefulWidget {
   @override
@@ -165,7 +79,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey, // Add a key to the Scaffold widget
-      drawer: const NavigationDrawer(),
+      drawer: const DrawerMenu(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -175,7 +89,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 IconButton(
                   icon: const Icon(Icons.menu),
                   onPressed: () {
-                    _scaffoldKey.currentState!.openDrawer(); // Use the GlobalKey to get a reference to the ScaffoldState
+                    _scaffoldKey.currentState!
+                        .openDrawer(); // Use the GlobalKey to get a reference to the ScaffoldState
                   },
                 ),
                 Expanded(
@@ -255,7 +170,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Breakfast', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Breakfast',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                     Column(
@@ -271,7 +189,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Lunch', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Lunch',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                     Column(
@@ -287,7 +208,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Dinner', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Dinner',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                     Column(
@@ -303,7 +227,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Appetizer', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Appetizer',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                     Column(
@@ -319,7 +246,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Snack', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Snack',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                     Column(
@@ -335,7 +265,10 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text('Drinks', style: TextStyle(fontSize: 15),),
+                        Text(
+                          'Drinks',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ],
                     ),
                   ],
