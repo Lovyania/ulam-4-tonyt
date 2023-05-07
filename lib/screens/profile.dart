@@ -8,7 +8,7 @@ void main() {
 
 class ProfilePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController _usernameTextController = TextEditingController();
+  final TextEditingController _usernameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,8 +31,8 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
-              CircleAvatar(
+              const SizedBox(height: 50),
+              const CircleAvatar(
                 maxRadius: 70,
                 backgroundImage: AssetImage("assets/users.png"),
               ),

@@ -89,8 +89,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 IconButton(
                   icon: const Icon(Icons.menu),
                   onPressed: () {
-                    _scaffoldKey.currentState!
-                        .openDrawer(); // Use the GlobalKey to get a reference to the ScaffoldState
+                    _scaffoldKey.currentState!.openDrawer();
                   },
                 ),
                 Expanded(
@@ -130,33 +129,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
               height: 130,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    // Column(
-                    //   children: [
-                    //     GestureDetector(
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(builder: (context) => Login()),
-                    //         );
-                    //       },
-                    //       child: CircleAvatar(
-                    //         backgroundImage: NetworkImage(
-                    //           'https://media.cnn.com/api/v1/images/stellar/prod/220217215855-01-filipino-breakfast-longsilog.jpg?q=h_2133,w_3469,x_0,y_0/w_1280',
-                    //         ),
-                    //         radius: 46,
-                    //       ),
-                    //     ),
-                    //     SizedBox(height: 8),
-                    //     Text('Breakfast', style: TextStyle(fontSize: 15),),
-                    //   ],
-                    // ),
                     Column(
                       children: [
                         GestureDetector(
@@ -167,8 +146,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Breakfast',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -184,8 +163,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Lunch',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -201,8 +180,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Dinner',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -218,8 +197,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Appetizer',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -235,8 +214,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Snack',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -252,8 +231,8 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                             radius: 46,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
+                        const SizedBox(height: 8),
+                        const Text(
                           'Drinks',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -327,18 +306,18 @@ class RecipeCard extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: recipe['image'],
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   recipe['label'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16.0,
                   ),
@@ -346,13 +325,13 @@ class RecipeCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Row(
                   children: <Widget>[
-                    Icon(Icons.restaurant),
-                    SizedBox(width: 4.0),
+                    const Icon(Icons.restaurant),
+                    const SizedBox(width: 4.0),
                     Text(
                       recipe['source'],
                       style: TextStyle(fontSize: 12.0),

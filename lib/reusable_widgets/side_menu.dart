@@ -42,21 +42,21 @@ class DrawerMenu extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 52,
                 backgroundImage: AssetImage('assets/users.png'),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Guest')
-                  : Text(
+                  ? const Text('Guest')
+                  : const Text(
                       style: TextStyle(fontSize: 24, color: Colors.white),
                       'Welcome!'),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Sign Up to access other features!')
+                  ? const Text('Sign Up to access other features!')
                   : Text(
                       FirebaseAuth.instance.currentUser!.email!,
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
                     ),
             ],
           ),
