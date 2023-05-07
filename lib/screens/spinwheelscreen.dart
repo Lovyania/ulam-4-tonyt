@@ -69,7 +69,7 @@ class _SpinWheelState extends State<SpinWheel> {
       items.addAll(await fetchData("pork"));
     }
     items.shuffle();
-    return items.take(6).toList();
+    return items.take(8).toList();
   }
 
   Future<void> fetchRecipe(String selectedItemName) async {
