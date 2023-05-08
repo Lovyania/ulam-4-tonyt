@@ -30,7 +30,7 @@ flutter:
 
   assets:
     - assets/logo.png
-    - assets/user.jpg
+    - assets/logo2.png
     - assets/users.png
     - assets/breakfast.jpg
     - assets/lunch.jpg

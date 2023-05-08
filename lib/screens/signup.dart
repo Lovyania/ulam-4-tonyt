@@ -39,11 +39,16 @@ class _signupState extends State<SignupPage> {
             child: SingleChildScrollView(
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(
-                        20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                        20, MediaQuery.of(context).size.height * 0.1, 20, 0),
                     child: Column(children: <Widget>[
-                      logoWidget("assets/user.jpg"),
+                      Image.asset(
+                        "assets/logo2.png",
+                        height: 290, // set the height of the image
+                        width: 290, // set the width of the image
+                      ),
+                      Text("Please create an account.", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
                       const SizedBox(
-                        height: 20,
+                        height: 50,
                       ),
                       reusableTextField("Enter Username", Icons.person_outline,
                           false, _usernameTextController),

@@ -47,9 +47,14 @@ class _LoginState extends State<LoginPage> {
           child: SingleChildScrollView(
               child: Padding(
                   padding: EdgeInsets.fromLTRB(
-                      20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                      20, MediaQuery.of(context).size.height * 0.1, 20, 0),
                   child: Column(children: <Widget>[
-                    logoWidget("assets/user.jpg"),
+                    Text("Welcome Back!", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
+                    Image.asset(
+                      "assets/logo2.png",
+                      height: 290, // set the height of the image
+                      width: 290, // set the width of the image
+                    ),
                     SizedBox(
                       height: 30,
                     ),

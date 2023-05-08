@@ -124,7 +124,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 Text(
                   'Categories',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -263,6 +263,19 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                 ),
               ),
             ),
+            SizedBox(height: 8),
+            Row(
+              children: [
+                Text(
+                  'Recipes',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
             Expanded(
               child: ConditionalBuilder(
                 condition: _searchResults.isNotEmpty,
