@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
 
+import '../reusable_widgets/side_menu.dart';
+
 class SpinWheel extends StatefulWidget {
   const SpinWheel({Key? key}) : super(key: key);
 
@@ -170,7 +172,8 @@ class _SpinWheelState extends State<SpinWheel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey, // Add a key to the Scaffold widget,
+      key: _scaffoldKey,
+      drawer: const DrawerMenu(),// Add a key to the Scaffold widget,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.menu),
