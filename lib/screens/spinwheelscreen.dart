@@ -3,7 +3,8 @@ import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
-import 'package:ulam_4_tonyt/reusable_widgets/side_menu.dart';
+
+import '../reusable_widgets/side_menu.dart';
 
 class SpinWheel extends StatefulWidget {
   const SpinWheel({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _SpinWheelState extends State<SpinWheel> {
       final jsonResponse = json.decode(response.body);
       final hits = jsonResponse['hits'] as List<dynamic>;
       final itemHits =
-          hits.map((hit) => hit['recipe']['label'].toString()).toList();
+      hits.map((hit) => hit['recipe']['label'].toString()).toList();
       return List.from(itemHits)..shuffle();
     } else {
       throw Exception('Failed to load data');
@@ -55,21 +56,81 @@ class _SpinWheelState extends State<SpinWheel> {
       fetchPorkAPI = true;
     }
 
+    int itemCount = 8;
     List<String> items = [];
+
+    int selectedAPIsCount = 0;
+    if (fetchChickenAPI) selectedAPIsCount++;
+    if (fetchFishAPI) selectedAPIsCount++;
+    if (fetchBeefAPI) selectedAPIsCount++;
+    if (fetchPorkAPI) selectedAPIsCount++;
+
+    int itemsPerAPI = itemCount ~/ selectedAPIsCount;
+    int extraItems = itemCount % selectedAPIsCount;
+
     if (fetchChickenAPI) {
-      items.addAll(await fetchData("chicken"));
+      List<String> chickenItems = await fetchData("chicken");
+      if (chickenItems.length > itemsPerAPI) {
+        items.addAll(chickenItems.take(itemsPerAPI));
+      } else {
+        items.addAll(chickenItems);
+        extraItems -= (itemsPerAPI - chickenItems.length);
+        itemsPerAPI = chickenItems.length;
+      }
     }
     if (fetchFishAPI) {
-      items.addAll(await fetchData("fish"));
+      List<String> fishItems = await fetchData("fish");
+      if (fishItems.length > itemsPerAPI) {
+        items.addAll(fishItems.take(itemsPerAPI));
+      } else {
+        items.addAll(fishItems);
+        extraItems -= (itemsPerAPI - fishItems.length);
+        itemsPerAPI = fishItems.length;
+      }
     }
     if (fetchBeefAPI) {
-      items.addAll(await fetchData("beef"));
+      List<String> beefItems = await fetchData("beef");
+      if (beefItems.length > itemsPerAPI) {
+        items.addAll(beefItems.take(itemsPerAPI));
+      } else {
+        items.addAll(beefItems);
+        extraItems -= (itemsPerAPI - beefItems.length);
+        itemsPerAPI = beefItems.length;
+      }
     }
     if (fetchPorkAPI) {
-      items.addAll(await fetchData("pork"));
+      List<String> porkItems = await fetchData("pork");
+      if (porkItems.length > itemsPerAPI) {
+        items.addAll(porkItems.take(itemsPerAPI));
+      } else {
+        items.addAll(porkItems);
+        extraItems -= (itemsPerAPI - porkItems.length);
+        itemsPerAPI = porkItems.length;
+      }
     }
+
+    // If there are extra items, add them to the list by taking one from each API
+    if (extraItems > 0) {
+      if (fetchChickenAPI && extraItems > 0) {
+        items.add(await fetchData("chicken").then((items) => items.first));
+        extraItems--;
+      }
+      if (fetchFishAPI && extraItems > 0) {
+        items.add(await fetchData("fish").then((items) => items.first));
+        extraItems--;
+      }
+      if (fetchBeefAPI && extraItems > 0) {
+        items.add(await fetchData("beef").then((items) => items.first));
+        extraItems--;
+      }
+      if (fetchPorkAPI && extraItems > 0) {
+        items.add(await fetchData("pork").then((items) => items.first));
+        extraItems--;
+      }
+    }
+
     items.shuffle();
-    return items.take(8).toList();
+    return items;
   }
 
   Future<void> fetchRecipe(String selectedItemName) async {
@@ -111,8 +172,8 @@ class _SpinWheelState extends State<SpinWheel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey, // Add a key to the Scaffold widget
-      drawer: const DrawerMenu(),
+      key: _scaffoldKey,
+      drawer: const DrawerMenu(),// Add a key to the Scaffold widget,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.menu),
@@ -146,8 +207,8 @@ class _SpinWheelState extends State<SpinWheel> {
                         animateFirst: true,
                         items: [
                           for (int i = 0;
-                              i < items.length;
-                              i++) ...<FortuneItem>{
+                          i < items.length;
+                          i++) ...<FortuneItem>{
                             FortuneItem(child: Text(items[i])),
                           },
                         ],
@@ -166,7 +227,9 @@ class _SpinWheelState extends State<SpinWheel> {
                 },
               ),
             ),
+
           ),
+
           if (!isSpinning) // conditionally render the button
             GestureDetector(
               onTap: () async {
@@ -177,25 +240,42 @@ class _SpinWheelState extends State<SpinWheel> {
                   });
                   await Future.delayed(Duration(
                       milliseconds:
-                          100)); // delay to show the result before spinning
+                      100)); // delay to show the result before spinning
                   selected.add(selectedValue);
                 }
               },
-              child: Container(
-                height: 40,
-                width: 120,
-                color: Colors.redAccent,
-                child: Center(
-                  child: Text("SPIN"),
+
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Container(
+                  height: 40,
+                  width: 120,
+                  color: Colors.lightGreen,
+                  child: Center(
+                    child: Text("SPIN"),
+
+                  ),
                 ),
               ),
             ),
+          Column(
+            children: [
+              Text(
+                '',
+                style: TextStyle(fontSize: 24),
+              ),
+              Text(
+                'Select meat type',
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+            ],
+          ),
           CheckboxListTile(
             title: Text('Chicken'),
             value: fetchChickenAPI,
             onChanged: (bool? value) {
               setState(() {
-                fetchChickenAPI = value ?? false;
+                fetchChickenAPI = value!; 2; false;
               });
             },
           ),
@@ -204,7 +284,7 @@ class _SpinWheelState extends State<SpinWheel> {
             value: fetchBeefAPI,
             onChanged: (bool? value) {
               setState(() {
-                fetchBeefAPI = value ?? false;
+                fetchBeefAPI = value!; 2; false;
               });
             },
           ),
@@ -213,7 +293,7 @@ class _SpinWheelState extends State<SpinWheel> {
             value: fetchPorkAPI,
             onChanged: (bool? value) {
               setState(() {
-                fetchPorkAPI = value ?? false;
+                fetchPorkAPI = value!; 2; false;
               });
             },
           ),
@@ -222,10 +302,11 @@ class _SpinWheelState extends State<SpinWheel> {
             value: fetchFishAPI,
             onChanged: (bool? value) {
               setState(() {
-                fetchFishAPI = value ?? false;
+                fetchFishAPI = value!; 2; false;
               });
             },
           ),
+
         ],
       ),
     );

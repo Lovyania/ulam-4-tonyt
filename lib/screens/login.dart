@@ -15,8 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
   String? _errorMessage;
 
   @override
@@ -32,7 +32,7 @@ class _LoginState extends State<LoginPage> {
                 .openDrawer(); // Use the GlobalKey to get a reference to the ScaffoldState
           },
         ),
-        title: const Text('Log In'),
+        title: Text('Log In'),
         backgroundColor: Colors.green,
       ),
       body: Container(
@@ -47,20 +47,25 @@ class _LoginState extends State<LoginPage> {
           child: SingleChildScrollView(
               child: Padding(
                   padding: EdgeInsets.fromLTRB(
-                      20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                      20, MediaQuery.of(context).size.height * 0.1, 20, 0),
                   child: Column(children: <Widget>[
-                    logoWidget("assets/user.jpg"),
-                    const SizedBox(
+                    Text("Welcome Back!", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
+                    Image.asset(
+                      "assets/logo2.png",
+                      height: 290, // set the height of the image
+                      width: 290, // set the width of the image
+                    ),
+                    SizedBox(
                       height: 30,
                     ),
                     reusableTextField("Enter Your Email", Icons.person_outline,
                         false, _emailTextController),
-                    const SizedBox(
+                    SizedBox(
                       height: 30,
                     ),
                     reusableTextField("Enter Your Password", Icons.lock_outline,
                         true, _passwordTextController),
-                    const SizedBox(
+                    SizedBox(
                       height: 30,
                     ),
                     loginSignupButton(context, true, () {
@@ -85,7 +90,7 @@ class _LoginState extends State<LoginPage> {
                     if (_errorMessage != null)
                       Text(
                         _errorMessage!,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.red,
                           fontSize: 14,
                         ),
