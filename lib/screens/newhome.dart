@@ -17,14 +17,25 @@ class RecipeSearchPage extends StatefulWidget {
 
 class _RecipeSearchPageState extends State<RecipeSearchPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final ScrollController _scrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
+
+  List<Map<String, dynamic>> _history = [];
   String _searchQuery = '';
+
   List<dynamic> _searchResults = [];
   String _mealType = '';
+
   int _totalResults = 0;
   int _currentPage = 0;
   final int _perPage = 10;
+
+  void _addToHistory(Map<String, dynamic> recipe) {
+    setState(() {
+      _history.add(recipe);
+    });
+  }
 
   @override
   void dispose() {

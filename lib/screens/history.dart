@@ -4,22 +4,10 @@ import 'package:flutter/material.dart';
 import '../reusable_widgets/side_menu.dart';
 import 'newhome.dart';
 
-class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key, required this.history}) : super(key: key);
+class HistoryPage extends StatelessWidget {
   final List<Map<String, dynamic>> history;
 
-  @override
-  _HistoryPageState createState() => _HistoryPageState();
-}
-
-class _HistoryPageState extends State<HistoryPage> {
-  List<Map<String, dynamic>> _history = [];
-
-  void _addToHistory(Map<String, dynamic> recipe) {
-    setState(() {
-      _history.add(recipe);
-    });
-  }
+  const HistoryPage({Key? key, required this.history}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +17,9 @@ class _HistoryPageState extends State<HistoryPage> {
         title: const Text('History'),
       ),
       body: ListView.builder(
-        itemCount: widget.history.length,
+        itemCount: history.length,
         itemBuilder: (context, index) {
-          final recipe = widget.history[index];
+          final recipe = history[index];
           return ListTile(
             title: Text(recipe['label']),
             subtitle: Text(recipe['source']),
@@ -40,9 +28,6 @@ class _HistoryPageState extends State<HistoryPage> {
               placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            onTap: () {
-              _addToHistory(recipe);
-            },
           );
         },
       ),
