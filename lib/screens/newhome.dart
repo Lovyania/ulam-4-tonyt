@@ -8,6 +8,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:ulam_4_tonyt/reusable_widgets/side_menu.dart';
 
+import 'history.dart';
+
 class RecipeSearchPage extends StatefulWidget {
   @override
   _RecipeSearchPageState createState() => _RecipeSearchPageState();
@@ -18,7 +20,12 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
 
   final ScrollController _scrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
+<<<<<<< Updated upstream
 
+=======
+  List<Map<String, dynamic>> _history = [];
+  String _searchQuery = '';
+>>>>>>> Stashed changes
   List<dynamic> _searchResults = [];
 
   String _searchQuery = '';
@@ -27,6 +34,12 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   int _totalResults = 0;
   int _currentPage = 0;
   final int _perPage = 10;
+
+  void _addToHistory(Map<String, dynamic> recipe) {
+    setState(() {
+      _history.add(recipe);
+    });
+  }
 
   @override
   void dispose() {
@@ -104,7 +117,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey, // Add a key to the Scaffold widget
-      drawer: const DrawerMenu(),
+      drawer: DrawerMenu(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -286,13 +299,28 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                       );
                     }
                     final recipe = _searchResults[index]['recipe'];
-                    return RecipeCard(recipe: recipe);
+                    return RecipeCard(
+                      recipe: recipe,
+                      onRecipeSelected: _addToHistory,
+                      selectedRecipes: _history,
+                    );
                   },
                 ),
                 fallback: (context) => const Center(
                   child: Text('Search for a recipe!'),
                 ),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HistoryPage(history: _history),
+                  ),
+                );
+              },
+              child: const Text('History'),
             ),
           ],
         ),
@@ -303,8 +331,14 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
 
 class RecipeCard extends StatelessWidget {
   final Map<String, dynamic> recipe;
+  final Function(Map<String, dynamic> recipe) onRecipeSelected;
+  final List<Map<String, dynamic>> selectedRecipes;
 
-  RecipeCard({required this.recipe});
+  RecipeCard({
+    required this.recipe,
+    required this.onRecipeSelected,
+    required this.selectedRecipes,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -312,6 +346,7 @@ class RecipeCard extends StatelessWidget {
       onTap: () async {
         if (await canLaunch(recipe['url'])) {
           await launch(recipe['url']);
+          onRecipeSelected(recipe);
         }
       },
       child: Container(

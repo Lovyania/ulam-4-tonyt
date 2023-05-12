@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ulam_4_tonyt/screens/history.dart';
 
 import 'package:ulam_4_tonyt/screens/profile.dart';
 import 'package:ulam_4_tonyt/screens/login.dart';
@@ -92,16 +93,28 @@ class DrawerMenu extends StatelessWidget {
                       builder: (context) => const LoginPage(),
                     )),
                   )
-                : ListTile(
-                    leading: const Icon(Icons.logout_outlined),
-                    title: const Text('Log Out'),
-                    onTap: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => RecipeSearchPage(),
-                      ));
-                    },
-                  ),
+                : Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.history_outlined),
+                        title: const Text('History'),
+                        onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HistoryPage(history: [],),
+                        )),
+                      ),
+                      SizedBox(height: 18),
+                      ListTile(
+                        leading: const Icon(Icons.logout_outlined),
+                        title: const Text('Log Out'),
+                        onTap: () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => RecipeSearchPage(),
+                          ));
+                        },
+                      ),
+                    ],
+                ),
           ],
         ),
       );
