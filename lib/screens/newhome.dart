@@ -15,10 +15,15 @@ class RecipeSearchPage extends StatefulWidget {
 
 class _RecipeSearchPageState extends State<RecipeSearchPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final ScrollController _scrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
+
   List<dynamic> _searchResults = [];
+
+  String _searchQuery = '';
+  String _mealType = '';
+
   int _totalResults = 0;
   int _currentPage = 0;
   final int _perPage = 10;
@@ -43,6 +48,26 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
     const appKey = '9ab562577b709b59d7518e6ca96cc2f5';
     final url =
         'https://api.edamam.com/search?q=$_searchQuery&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body)['hits'];
+      final total = jsonDecode(response.body)['count'];
+      setState(() {
+        _searchResults.addAll(data);
+        _totalResults = total;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+  Future<void> _querybyMealType() async {
+    const appId = 'c6b66230';
+    const appKey = '9ab562577b709b59d7518e6ca96cc2f5';
+    final url =
+        'https://api.edamam.com/search?q=$_mealType&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
 
     final response = await http.get(Uri.parse(url));
 
@@ -130,7 +155,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
               ],
             ),
             const SizedBox(height: 16),
-            Container(
+            SizedBox(
               height: 130,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -139,8 +164,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.foodnetwork.com/recipes/photos/our-best-breakfast-recipes')),
+                          onTap: () {
+                            setState(() {
+                              _mealType = "breakfast";
+                              _searchResults.clear();
+                            });
+                            _querybyMealType();
+                          },
                           child: const CircleAvatar(
                             backgroundImage: AssetImage('assets/breakfast.jpg'),
                             radius: 46,
@@ -156,8 +186,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.allrecipes.com/recipes/16376/healthy-recipes/lunches/')),
+                          onTap: () {
+                            setState(() {
+                              _mealType = "lunch";
+                              _searchResults.clear();
+                            });
+                            _querybyMealType();
+                          },
                           child: const CircleAvatar(
                             backgroundImage: AssetImage('assets/lunch.jpg'),
                             radius: 46,
@@ -173,8 +208,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.tasteofhome.com/collection/classic-comfort-food-dinners/')),
+                          onTap: () {
+                            setState(() {
+                              _mealType = "dinner";
+                              _searchResults.clear();
+                            });
+                            _querybyMealType();
+                          },
                           child: const CircleAvatar(
                             backgroundImage: AssetImage('assets/dinner.jpg'),
                             radius: 46,
@@ -190,25 +230,13 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.loveandlemons.com/appetizers/')),
-                          child: const CircleAvatar(
-                            backgroundImage: AssetImage('assets/appetizer.jpg'),
-                            radius: 46,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Appetizer',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.foodnetwork.com/recipes/photos/50-quick-snack-recipes')),
+                          onTap: () {
+                            setState(() {
+                              _mealType = "snack";
+                              _searchResults.clear();
+                            });
+                            _querybyMealType();
+                          },
                           child: const CircleAvatar(
                             backgroundImage: AssetImage('assets/snack.jpg'),
                             radius: 46,
@@ -217,23 +245,6 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                         const SizedBox(height: 8),
                         const Text(
                           'Snack',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.allrecipes.com/recipes/77/drinks/')),
-                          child: const CircleAvatar(
-                            backgroundImage: AssetImage('assets/drinks.jpg'),
-                            radius: 46,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Drinks',
                           style: TextStyle(fontSize: 15),
                         ),
                       ],
@@ -327,7 +338,7 @@ class RecipeCard extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   recipe['label'],
                   style: const TextStyle(
@@ -347,7 +358,7 @@ class RecipeCard extends StatelessWidget {
                     const SizedBox(width: 4.0),
                     Text(
                       recipe['source'],
-                      style: TextStyle(fontSize: 12.0),
+                      style: const TextStyle(fontSize: 12.0),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

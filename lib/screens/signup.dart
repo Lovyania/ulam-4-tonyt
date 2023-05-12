@@ -14,7 +14,6 @@ class SignupPage extends StatefulWidget {
 class _signupState extends State<SignupPage> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _usernameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +45,11 @@ class _signupState extends State<SignupPage> {
                         height: 290, // set the height of the image
                         width: 290, // set the width of the image
                       ),
-                      Text("Please create an account.", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-                      const SizedBox(
-                        height: 50,
+                      const Text(
+                        "Please create an account.",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      reusableTextField("Enter Username", Icons.person_outline,
-                          false, _usernameTextController),
                       const SizedBox(
                         height: 20,
                       ),
