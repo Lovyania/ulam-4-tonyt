@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +17,8 @@ class RecipeSearchPage extends StatefulWidget {
 
 class _RecipeSearchPageState extends State<RecipeSearchPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   final ScrollController _scrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
@@ -94,6 +98,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
             _currentPage += _perPage;
           });
           _searchRecipes();
+          _querybyMealType();
         }
       }
     });
@@ -306,12 +311,40 @@ class RecipeCard extends StatelessWidget {
 
   RecipeCard({required this.recipe});
 
+  final CollectionReference viewedRecipesRef =
+      FirebaseFirestore.instance.collection('users');
+  final userId = FirebaseAuth.instance.currentUser?.uid;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
         if (await canLaunch(recipe['url'])) {
           await launch(recipe['url']);
+
+          final existingRecipe = await viewedRecipesRef
+              .doc(userId)
+              .collection('viewedRecipes')
+              .where('url', isEqualTo: recipe['url'])
+              .limit(1)
+              .get();
+
+          if (existingRecipe.docs.isEmpty) {
+            final recipeData = {
+              'label': recipe['label'],
+              'image': recipe['image'],
+              'source': recipe['source'],
+              'url': recipe['url'],
+              'viewedAt': FieldValue.serverTimestamp(),
+            };
+            viewedRecipesRef
+                .doc(userId)
+                .collection('viewedRecipes')
+                .add(recipeData)
+                .then((value) => print("Viewed recipe added"))
+                .catchError(
+                    (error) => print("Failed to add viewed recipe: $error"));
+          }
         }
       },
       child: Container(

@@ -5,6 +5,7 @@ import 'package:ulam_4_tonyt/screens/profile.dart';
 import 'package:ulam_4_tonyt/screens/login.dart';
 import 'package:ulam_4_tonyt/screens/spinwheelscreen.dart';
 import 'package:ulam_4_tonyt/screens/newhome.dart';
+import 'package:ulam_4_tonyt/screens/recentlyviewed.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({Key? key}) : super(key: key);
@@ -48,12 +49,14 @@ class DrawerMenu extends StatelessWidget {
               ),
               SizedBox(height: 12),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Guest', style: TextStyle(fontSize: 24, color: Colors.white))
+                  ? Text('Guest',
+                      style: TextStyle(fontSize: 24, color: Colors.white))
                   : Text(
                       style: TextStyle(fontSize: 24, color: Colors.white),
                       'Welcome!'),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Sign Up to access other features!', style: TextStyle(fontSize: 16, color: Colors.white))
+                  ? Text('Sign Up to access other features!',
+                      style: TextStyle(fontSize: 16, color: Colors.white))
                   : Text(
                       FirebaseAuth.instance.currentUser!.email!,
                       style: TextStyle(fontSize: 16, color: Colors.white),
@@ -73,6 +76,14 @@ class DrawerMenu extends StatelessWidget {
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => RecipeSearchPage(),
+              )),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home_outlined),
+              title: const Text('History'),
+              onTap: () =>
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ViewedRecipesPage(),
               )),
             ),
             ListTile(

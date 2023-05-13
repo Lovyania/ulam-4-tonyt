@@ -2,7 +2,7 @@
     package="com.example.ulam_4_tonyt">
    <application
         android:label="ulam_4_tonyt"
-        android:name="${applicationName}"
+        android:name="io.flutter.app.FlutterMultiDexApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
