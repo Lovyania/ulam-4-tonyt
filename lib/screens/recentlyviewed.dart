@@ -13,6 +13,7 @@ class ViewedRecipesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       appBar: AppBar(
         title: Text('Viewed Recipes'),
       ),

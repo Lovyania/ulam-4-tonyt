@@ -27,6 +27,29 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
 
   String _searchQuery = '';
   String _mealType = '';
+  String _cuisineType = 'World';
+
+  final List<String> _cuisineTypes = [
+    'World',
+    'American',
+    'Asian',
+    'British',
+    'Caribbean',
+    'Central Europe',
+    'Chinese',
+    'Eastern Europe',
+    'French',
+    'Indian',
+    'Italian',
+    'Japanese',
+    'Kosher',
+    'Mediterranean',
+    'Mexican',
+    'Middle Eastern',
+    'Nordic',
+    'South American',
+    'South East Asian'
+  ];
 
   int _totalResults = 0;
   int _currentPage = 0;
@@ -51,7 +74,7 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
     const appId = 'c6b66230';
     const appKey = '9ab562577b709b59d7518e6ca96cc2f5';
     final url =
-        'https://api.edamam.com/search?q=$_searchQuery&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
+        'https://api.edamam.com/search?q=$_searchQuery&cuisineType=$_cuisineType&app_id=$appId&app_key=$appKey&from=$_currentPage&to=${_currentPage + _perPage}';
 
     final response = await http.get(Uri.parse(url));
 
@@ -102,7 +125,6 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
         }
       }
     });
-    _searchController = TextEditingController();
   }
 
   @override
@@ -145,6 +167,30 @@ class _RecipeSearchPageState extends State<RecipeSearchPage> {
                       _searchRecipes();
                     },
                   ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Text(
+                  'Food Region: ',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 16),
+                DropdownButton<String>(
+                  value: _cuisineType,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _cuisineType = value!;
+                      _searchResults.clear();
+                    });
+                  },
+                  items: _cuisineTypes
+                      .map((cuisineType) => DropdownMenuItem<String>(
+                            value: cuisineType,
+                            child: Text(cuisineType),
+                          ))
+                      .toList(),
                 ),
               ],
             ),

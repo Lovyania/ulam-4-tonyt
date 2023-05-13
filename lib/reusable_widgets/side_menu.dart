@@ -43,19 +43,19 @@ class DrawerMenu extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 52,
                 backgroundImage: AssetImage('assets/users.png'),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Guest',
+                  ? const Text('Guest',
                       style: TextStyle(fontSize: 24, color: Colors.white))
-                  : Text(
+                  : const Text(
                       style: TextStyle(fontSize: 24, color: Colors.white),
                       'Welcome!'),
               FirebaseAuth.instance.currentUser == null
-                  ? Text('Sign Up to access other features!',
+                  ? const Text('Sign Up to access other features!',
                       style: TextStyle(fontSize: 16, color: Colors.white))
                   : Text(
                       FirebaseAuth.instance.currentUser!.email!,
@@ -73,24 +73,23 @@ class DrawerMenu extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text('Home'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => RecipeSearchPage(),
               )),
             ),
+            FirebaseAuth.instance.currentUser == null
+                ? const SizedBox()
+                : ListTile(
+                    leading: const Icon(Icons.history_outlined),
+                    title: const Text('History'),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewedRecipesPage(),
+                    )),
+                  ),
             ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title: const Text('History'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => ViewedRecipesPage(),
-              )),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces_outline),
+              leading: const Icon(Icons.workspaces_outlined),
               title: const Text('Food Roulette'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const SpinWheel(),
               )),
             ),
@@ -98,8 +97,7 @@ class DrawerMenu extends StatelessWidget {
                 ? ListTile(
                     leading: const Icon(Icons.login_outlined),
                     title: const Text('Log In'),
-                    onTap: () =>
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LoginPage(),
                     )),
                   )
@@ -108,7 +106,7 @@ class DrawerMenu extends StatelessWidget {
                     title: const Text('Log Out'),
                     onTap: () {
                       FirebaseAuth.instance.signOut();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => RecipeSearchPage(),
                       ));
                     },
