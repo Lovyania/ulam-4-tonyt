@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:ulam_4_tonyt/reusable_widgets/side_menu.dart';
 
@@ -15,7 +16,7 @@ class ViewedRecipesPage extends StatelessWidget {
     return Scaffold(
       drawer: const DrawerMenu(),
       appBar: AppBar(
-        title: Text('Viewed Recipes'),
+        title: const Text('Viewed Recipes'),
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: viewedRecipesRef
@@ -28,7 +29,7 @@ class ViewedRecipesPage extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -37,14 +38,25 @@ class ViewedRecipesPage extends StatelessWidget {
             itemCount: viewedRecipes.length,
             itemBuilder: (context, index) {
               final viewedRecipe = viewedRecipes[index];
-              return ListTile(
-                title: Text(viewedRecipe['label'] ?? ''),
-                subtitle: Text(viewedRecipe['source'] ?? ''),
-                leading: CachedNetworkImage(
-                  imageUrl: viewedRecipe['image'] ?? '',
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+              return GestureDetector(
+                onTap: () async {
+                  final url = viewedRecipe['url'];
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: ListTile(
+                  title: Text(viewedRecipe['label'] ?? ''),
+                  subtitle: Text(viewedRecipe['source'] ?? ''),
+                  leading: CachedNetworkImage(
+                    imageUrl: viewedRecipe['image'] ?? '',
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 ),
               );
             },
